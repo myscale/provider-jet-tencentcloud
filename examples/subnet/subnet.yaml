@@ -8,4 +8,4 @@ spec:
     availabilityZone: ap-beijing-5
     cidrBlock: 10.2.11.0/24
     name: test-subnet1
-    vpcId: vpc-g2tauwga
+    vpcId: your-vpc-id
