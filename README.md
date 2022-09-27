@@ -3,7 +3,7 @@
 `provider-jet-tencentcloud` is a [Crossplane](https://crossplane.io/) provider that
 is built using [Terrajet](https://github.com/crossplane/terrajet) code
 generation tools and exposes XRM-conformant managed resources for the
-TencentCloud API.
+TencentCloud API. And currently, tencentcloud_eks_cluster, tencentcloud_subnet and tencentcloud_vpc are supported.
 
 ## Governance and Owners
 
