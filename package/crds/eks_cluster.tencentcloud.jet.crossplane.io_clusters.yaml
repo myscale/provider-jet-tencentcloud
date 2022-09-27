@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: resources.null.template.jet.crossplane.io
+  name: clusters.eks_cluster.tencentcloud.jet.crossplane.io
 spec:
-  group: null.template.jet.crossplane.io
+  group: eks_cluster.tencentcloud.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - templatejet
-    kind: Resource
-    listKind: ResourceList
-    plural: resources
-    singular: resource
+    - tencentcloudjet
+    kind: Cluster
+    listKind: ClusterList
+    plural: clusters
+    singular: cluster
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Resource is the Schema for the Resources API
+        description: Cluster is the Schema for the Clusters API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ResourceSpec defines the desired state of Resource
+            description: ClusterSpec defines the desired state of Cluster
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,13 +63,101 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  triggers:
+                  clusterDesc:
+                    description: Description of EKS cluster.
+                    type: string
+                  clusterName:
+                    description: Name of EKS cluster.
+                    type: string
+                  dnsServers:
+                    description: List of cluster custom DNS Server info.
+                    items:
+                      properties:
+                        domain:
+                          description: DNS Server domain. Empty indicates all domain.
+                          type: string
+                        servers:
+                          description: 'List of DNS Server IP address, pattern: "ip[:port]".'
+                          items:
+                            type: string
+                          type: array
+                      type: object
+                    type: array
+                  enableVpcCoreDns:
+                    description: Indicates whether to enable dns in user cluster,
+                      default value is `true`.
+                    type: boolean
+                  extraParam:
                     additionalProperties:
                       type: string
-                    description: A map of arbitrary strings that, when changed, will
-                      force the null resource to be replaced, re-running any associated
-                      provisioners.
+                    description: Extend parameters.
                     type: object
+                  internalLb:
+                    description: Cluster internal access LoadBalancer info.
+                    items:
+                      properties:
+                        enabled:
+                          description: Indicates weather the internal access LB enabled.
+                          type: boolean
+                        subnetId:
+                          description: ID of subnet which related to Internal LB.
+                          type: string
+                      required:
+                      - enabled
+                      type: object
+                    type: array
+                  k8sVersion:
+                    description: Kubernetes version of EKS cluster.
+                    type: string
+                  needDeleteCbs:
+                    description: Delete CBS after EKS cluster remove.
+                    type: boolean
+                  publicLb:
+                    description: Cluster public access LoadBalancer info.
+                    items:
+                      properties:
+                        allowFromCidrs:
+                          description: List of CIDRs which allowed to access.
+                          items:
+                            type: string
+                          type: array
+                        enabled:
+                          description: Indicates weather the public access LB enabled.
+                          type: boolean
+                        extraParam:
+                          description: Extra param text json.
+                          type: string
+                        securityPolicies:
+                          description: List of security allow IP or CIDRs, default
+                            deny all.
+                          items:
+                            type: string
+                          type: array
+                      required:
+                      - enabled
+                      type: object
+                    type: array
+                  serviceSubnetId:
+                    description: Subnet id of service.
+                    type: string
+                  subnetIds:
+                    description: Subnet Ids for EKS cluster.
+                    items:
+                      type: string
+                    type: array
+                  tags:
+                    additionalProperties:
+                      type: string
+                    description: Tags of EKS cluster.
+                    type: object
+                  vpcId:
+                    description: Vpc Id of EKS cluster.
+                    type: string
+                required:
+                - clusterName
+                - k8sVersion
+                - subnetIds
+                - vpcId
                 type: object
               providerConfigRef:
                 default:
@@ -168,11 +256,13 @@ spec:
             - forProvider
             type: object
           status:
-            description: ResourceStatus defines the observed state of Resource.
+            description: ClusterStatus defines the observed state of Cluster.
             properties:
               atProvider:
                 properties:
                   id:
+                    type: string
+                  kubeConfig:
                     type: string
                 type: object
               conditions:
