@@ -23,7 +23,7 @@ import (
 	tjconfig "github.com/crossplane/terrajet/pkg/config"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/eks_cluster"
+	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/eks"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/subnet"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/vpc"
 )
@@ -65,7 +65,7 @@ func GetProvider() *tjconfig.Provider {
 		// add custom config functions
 		vpc.Configure,
 		subnet.Configure,
-		eks_cluster.Configure,
+		eks.Configure,
 	} {
 		configure(pc)
 	}

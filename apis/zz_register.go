@@ -22,7 +22,7 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/eks_cluster/v1alpha1"
+	v1alpha1 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/eks/v1alpha1"
 	v1alpha1subnet "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/subnet/v1alpha1"
 	v1alpha1apis "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/v1alpha1"
 	v1alpha1vpc "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/vpc/v1alpha1"

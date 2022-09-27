@@ -21,7 +21,7 @@ import (
 
 	"github.com/crossplane/terrajet/pkg/controller"
 
-	cluster "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/eks_cluster/cluster"
+	cluster "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/eks/cluster"
 	providerconfig "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/providerconfig"
 	subnet "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/subnet/subnet"
 	vpc "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/vpc/vpc"

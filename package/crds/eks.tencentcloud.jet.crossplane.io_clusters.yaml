@@ -5,9 +5,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: clusters.eks_cluster.tencentcloud.jet.crossplane.io
+  name: clusters.eks.tencentcloud.jet.crossplane.io
 spec:
-  group: eks_cluster.tencentcloud.jet.crossplane.io
+  group: eks.tencentcloud.jet.crossplane.io
   names:
     categories:
     - crossplane

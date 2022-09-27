@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package eks_cluster
+package eks
 
 import (
 	tjconfig "github.com/crossplane/terrajet/pkg/config"
@@ -24,6 +24,6 @@ import (
 func Configure(p *tjconfig.Provider) {
 	p.AddResourceConfigurator("tencentcloud_eks_cluster", func(r *tjconfig.Resource) {
 		r.ExternalName = tjconfig.IdentifierFromProvider
-		r.ShortGroup = "eks_cluster"
+		r.ShortGroup = "eks"
 	})
 }
