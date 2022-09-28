@@ -6,6 +6,10 @@ generation tools and exposes XRM-conformant managed resources for the
 TencentCloud API. And currently, tencentcloud_eks_cluster, tencentcloud_subnet and tencentcloud_vpc are supported.
 
 ## Deploying
+Add a submodule to your project first:
+```console
+make submodules
+```
 
 Generate CRDs:
 ```console
@@ -19,7 +23,7 @@ make run
 
 Build images:
 ```console
-make build
+make build PLATFORM=linux_amd64
 ```
 
 Build, push, and install:
