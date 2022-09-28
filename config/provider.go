@@ -25,6 +25,7 @@ import (
 
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/eks"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/kubernetes"
+	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/nodepool"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/subnet"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/vpc"
 )
@@ -43,6 +44,7 @@ var IncludedResources = []string{
 	"tencentcloud_subnet$",
 	"tencentcloud_eks_cluster$",
 	"tencentcloud_kubernetes_cluster$",
+	"tencentcloud_kubernetes_node_pool$",
 }
 
 // skipList
@@ -69,6 +71,7 @@ func GetProvider() *tjconfig.Provider {
 		subnet.Configure,
 		eks.Configure,
 		kubernetes.Configure,
+		nodepool.Configure,
 	} {
 		configure(pc)
 	}
