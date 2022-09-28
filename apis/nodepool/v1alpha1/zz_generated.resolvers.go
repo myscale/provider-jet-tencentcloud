@@ -19,8 +19,9 @@ package v1alpha1
 
 import (
 	"context"
-	v1alpha1 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/subnet/v1alpha1"
-	v1alpha11 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/vpc/v1alpha1"
+	v1alpha1 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/kubernetes/v1alpha1"
+	v1alpha11 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/subnet/v1alpha1"
+	v1alpha12 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/vpc/v1alpha1"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -40,8 +41,8 @@ func (mg *NodePool) ResolveReferences(ctx context.Context, c client.Reader) erro
 		Reference:    mg.Spec.ForProvider.ClusterIdRefs,
 		Selector:     mg.Spec.ForProvider.ClusterIdSelector,
 		To: reference.To{
-			List:    &v1alpha1.KubernetesList{},
-			Managed: &v1alpha1.Kubernetes{},
+			List:    &v1alpha1.ClusterList{},
+			Managed: &v1alpha1.Cluster{},
 		},
 	})
 	if err != nil {
@@ -56,8 +57,8 @@ func (mg *NodePool) ResolveReferences(ctx context.Context, c client.Reader) erro
 		References:    mg.Spec.ForProvider.SubnetIdRefs,
 		Selector:      mg.Spec.ForProvider.SubnetIdSelector,
 		To: reference.To{
-			List:    &v1alpha1.SubnetList{},
-			Managed: &v1alpha1.Subnet{},
+			List:    &v1alpha11.SubnetList{},
+			Managed: &v1alpha11.Subnet{},
 		},
 	})
 	if err != nil {
@@ -72,8 +73,8 @@ func (mg *NodePool) ResolveReferences(ctx context.Context, c client.Reader) erro
 		Reference:    mg.Spec.ForProvider.VpcIdRefs,
 		Selector:     mg.Spec.ForProvider.VpcIdSelector,
 		To: reference.To{
-			List:    &v1alpha11.VPCList{},
-			Managed: &v1alpha11.VPC{},
+			List:    &v1alpha12.VPCList{},
+			Managed: &v1alpha12.VPC{},
 		},
 	})
 	if err != nil {

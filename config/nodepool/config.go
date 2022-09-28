@@ -37,7 +37,7 @@ func Configure(p *tjconfig.Provider) {
 				SelectorFieldName: "SubnetIdSelector",
 			},
 			"cluster_id": {
-				Type:              "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/subnet/v1alpha1.Kubernetes",
+				Type:              "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/kubernetes/v1alpha1.Cluster",
 				RefFieldName:      "ClusterIdRefs",
 				SelectorFieldName: "ClusterIdSelector",
 			},

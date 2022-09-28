@@ -228,7 +228,7 @@ type NodePoolParameters struct {
 	AutoScalingConfig []AutoScalingConfigParameters `json:"autoScalingConfig" tf:"auto_scaling_config,omitempty"`
 
 	// ID of the cluster.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-jet-tencentcloud/apis/subnet/v1alpha1.Kubernetes
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-jet-tencentcloud/apis/kubernetes/v1alpha1.Cluster
 	// +crossplane:generate:reference:refFieldName=ClusterIdRefs
 	// +crossplane:generate:reference:selectorFieldName=ClusterIdSelector
 	// +kubebuilder:validation:Optional
