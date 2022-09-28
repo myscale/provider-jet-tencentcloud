@@ -1,12 +1,19 @@
-#apiVersion: eks.tencentcloud.jet.crossplane.io/v1alpha1
-#kind: Cluster
-#metadata:
-#  name: test-cluster
-#spec:
-#  forProvider:
-#    clusterName: crossplane-test
-#    k8sVersion:
-#    vpc_id:
-#    subnet_ids:
-#      -
-#      -
+apiVersion: eks.tencentcloud.jet.crossplane.io/v1alpha1
+kind: Cluster
+metadata:
+  name: test-cluster
+spec:
+  forProvider:
+    clusterName: crossplane-test
+    k8sVersion: 1.22.5
+    vpcIdSelector:
+      matchLabels:
+        provider: crossplane-provider-jet-tencentcloud
+        app: test
+    subnetIdSelector:
+      matchLabels:
+        provider: crossplane-provider-jet-tencentcloud
+        app: test
+  writeConnectionSecretToRef:
+    name: tencentcloud-eks-test
+    namespace: crossplane-system
