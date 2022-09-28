@@ -23,6 +23,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 
 	v1alpha1 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/eks/v1alpha1"
+	v1alpha1kubernetes "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/kubernetes/v1alpha1"
 	v1alpha1subnet "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/subnet/v1alpha1"
 	v1alpha1apis "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/v1alpha1"
 	v1alpha1vpc "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/vpc/v1alpha1"
@@ -32,6 +33,7 @@ func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1kubernetes.SchemeBuilder.AddToScheme,
 		v1alpha1subnet.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1alpha1vpc.SchemeBuilder.AddToScheme,

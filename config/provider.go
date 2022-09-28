@@ -24,6 +24,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/eks"
+	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/kubernetes"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/subnet"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/vpc"
 )
@@ -41,6 +42,7 @@ var IncludedResources = []string{
 	"tencentcloud_vpc$",
 	"tencentcloud_subnet$",
 	"tencentcloud_eks_cluster$",
+	"tencentcloud_kubernetes_cluster$",
 }
 
 // skipList
@@ -66,6 +68,7 @@ func GetProvider() *tjconfig.Provider {
 		vpc.Configure,
 		subnet.Configure,
 		eks.Configure,
+		kubernetes.Configure,
 	} {
 		configure(pc)
 	}

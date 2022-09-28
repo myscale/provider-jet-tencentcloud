@@ -22,6 +22,7 @@ import (
 	"github.com/crossplane/terrajet/pkg/controller"
 
 	cluster "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/eks/cluster"
+	clusterkubernetes "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/kubernetes/cluster"
 	providerconfig "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/providerconfig"
 	subnet "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/subnet/subnet"
 	vpc "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/vpc/vpc"
@@ -32,6 +33,7 @@ import (
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		cluster.Setup,
+		clusterkubernetes.Setup,
 		providerconfig.Setup,
 		subnet.Setup,
 		vpc.Setup,
