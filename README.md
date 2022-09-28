@@ -5,6 +5,28 @@ is built using [Terrajet](https://github.com/crossplane/terrajet) code
 generation tools and exposes XRM-conformant managed resources for the
 TencentCloud API. And currently, tencentcloud_eks_cluster, tencentcloud_subnet and tencentcloud_vpc are supported.
 
+## Deploying
+
+Generate CRDs:
+```console
+make generate
+```
+
+Run provider locally:
+```console
+make run
+```
+
+Build images:
+```console
+make build
+```
+
+Build, push, and install:
+```console
+make all
+```
+
 ## Governance and Owners
 
 provider-jet-tencentcloud is run according to the same
