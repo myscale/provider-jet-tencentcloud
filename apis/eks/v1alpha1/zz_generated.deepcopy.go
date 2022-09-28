@@ -22,6 +22,7 @@ limitations under the License.
 package v1alpha1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -178,6 +179,16 @@ func (in *ClusterParameters) DeepCopyInto(out *ClusterParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.SubnetIdRefs != nil {
+		in, out := &in.SubnetIdRefs, &out.SubnetIdRefs
+		*out = make([]v1.Reference, len(*in))
+		copy(*out, *in)
+	}
+	if in.SubnetIdSelector != nil {
+		in, out := &in.SubnetIdSelector, &out.SubnetIdSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.SubnetIds != nil {
 		in, out := &in.SubnetIds, &out.SubnetIds
 		*out = make([]*string, len(*in))
@@ -208,6 +219,16 @@ func (in *ClusterParameters) DeepCopyInto(out *ClusterParameters) {
 		in, out := &in.VPCID, &out.VPCID
 		*out = new(string)
 		**out = **in
+	}
+	if in.VpcIdRefs != nil {
+		in, out := &in.VpcIdRefs, &out.VpcIdRefs
+		*out = new(v1.Reference)
+		**out = **in
+	}
+	if in.VpcIdSelector != nil {
+		in, out := &in.VpcIdSelector, &out.VpcIdSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 

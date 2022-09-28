@@ -2,18 +2,18 @@
 apiVersion: pkg.crossplane.io/v1alpha1
 kind: ControllerConfig
 metadata:
-  name: jet-tencentcloud-config
+  name: tencentcloud-config
   labels:
-    app: crossplane-provider-jet-tencentcloud
+    app: crossplane-provider-tencentcloud
 spec:
-  image: harbor.internal.moqi.ai/mqdb/provider-jet-tencentcloud-controller-amd64:v0.1
+  image: harbor.internal.moqi.ai/mqdb/provider-tencentcloud-controller:v0.2
   args: ["-d"]
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
-  name: crossplane-provider-jet-tencentcloud
+  name: crossplane-provider-tencentcloud
 spec:
-  package: harbor.internal.moqi.ai/mqdb/provider-jet-tencentcloud-amd64:v0.1
+  package: harbor.internal.moqi.ai/mqdb/provider-tencentcloud:v0.2
   controllerConfigRef:
-    name: jet-tencentcloud-config
+    name: tencentcloud-config

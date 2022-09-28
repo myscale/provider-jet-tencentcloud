@@ -73,17 +73,35 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	ServiceSubnetID *string `json:"serviceSubnetId,omitempty" tf:"service_subnet_id,omitempty"`
 
+	// +kubebuilder:validation:Optional
+	SubnetIdRefs []v1.Reference `json:"subnetIdRefs,omitempty" tf:"-"`
+
+	// +kubebuilder:validation:Optional
+	SubnetIdSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
+
 	// Subnet Ids for EKS cluster.
-	// +kubebuilder:validation:Required
-	SubnetIds []*string `json:"subnetIds" tf:"subnet_ids,omitempty"`
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-jet-tencentcloud/apis/subnet/v1alpha1.Subnet
+	// +crossplane:generate:reference:refFieldName=SubnetIdRefs
+	// +crossplane:generate:reference:selectorFieldName=SubnetIdSelector
+	// +kubebuilder:validation:Optional
+	SubnetIds []*string `json:"subnetIds,omitempty" tf:"subnet_ids,omitempty"`
 
 	// Tags of EKS cluster.
 	// +kubebuilder:validation:Optional
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// Vpc Id of EKS cluster.
-	// +kubebuilder:validation:Required
-	VPCID *string `json:"vpcId" tf:"vpc_id,omitempty"`
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-jet-tencentcloud/apis/vpc/v1alpha1.VPC
+	// +crossplane:generate:reference:refFieldName=VpcIdRefs
+	// +crossplane:generate:reference:selectorFieldName=VpcIdSelector
+	// +kubebuilder:validation:Optional
+	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	VpcIdRefs *v1.Reference `json:"vpcIdRefs,omitempty" tf:"-"`
+
+	// +kubebuilder:validation:Optional
+	VpcIdSelector *v1.Selector `json:"vpcIdSelector,omitempty" tf:"-"`
 }
 
 type DNSServersObservation struct {

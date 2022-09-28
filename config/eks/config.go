@@ -25,5 +25,17 @@ func Configure(p *tjconfig.Provider) {
 	p.AddResourceConfigurator("tencentcloud_eks_cluster", func(r *tjconfig.Resource) {
 		r.ExternalName = tjconfig.IdentifierFromProvider
 		r.ShortGroup = "eks"
+		r.References = tjconfig.References{
+			"vpc_id": {
+				Type:              "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/vpc/v1alpha1.VPC",
+				RefFieldName:      "VpcIdRefs",
+				SelectorFieldName: "VpcIdSelector",
+			},
+			"subnet_ids": {
+				Type:              "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/subnet/v1alpha1.Subnet",
+				RefFieldName:      "SubnetIdRefs",
+				SelectorFieldName: "SubnetIdSelector",
+			},
+		}
 	})
 }

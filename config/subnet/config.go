@@ -25,5 +25,10 @@ func Configure(p *tjconfig.Provider) {
 	p.AddResourceConfigurator("tencentcloud_subnet", func(r *tjconfig.Resource) {
 		r.ExternalName = tjconfig.IdentifierFromProvider
 		r.ShortGroup = "subnet"
+		r.References["vpc_id"] = tjconfig.Reference{
+			Type:              "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/vpc/v1alpha1.VPC",
+			RefFieldName:      "VpcIdRefs",
+			SelectorFieldName: "VpcIdSelector",
+		}
 	})
 }
