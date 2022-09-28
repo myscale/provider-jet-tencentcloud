@@ -5,7 +5,7 @@ metadata:
 spec:
   forProvider:
     clusterName: crossplane-test
-    k8sVersion: 1.22.5
+    k8sVersion: 1.18.4
     vpcIdSelector:
       matchLabels:
         provider: crossplane-provider-jet-tencentcloud
