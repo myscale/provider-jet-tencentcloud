@@ -1,0 +1,36 @@
+apiVersion: nodepool.tencentcloud.jet.crossplane.io/v1alpha1
+kind: NodePool
+metadata:
+  name: test-nodepool
+spec:
+  forProvider:
+    name: test-nodepool
+    clusterIdSelector:
+      matchLabels:
+        provider: crossplane-provider-jet-tencentcloud
+        app: test
+    maxSize: 6
+    minSize: 1
+    vpcIdSelector:
+      matchLabels:
+        provider: crossplane-provider-jet-tencentcloud
+        app: test
+    subnetIdSelector:
+      matchLabels:
+        provider: crossplane-provider-jet-tencentcloud
+        app: test
+    retryPolicy: INCREMENTAL_INTERVALS
+    enableAutoScale: true
+    autoScalingConfig:
+      - instanceType: S1.SMALL1
+        systemDiskType: CLOUD_PREMIUM
+        systemDiskSize: 50
+        enhancedMonitorService: False
+        enhancedSecurityService: False
+        passwordSecretRef:
+          key: password
+          name: test-cluster
+          namespace: crossplane-system
+        dataDisk:
+          - diskType: CLOUD_PREMIUM
+            diskSize: 50

@@ -7,5 +7,5 @@ metadata:
     app: test
 spec:
   forProvider:
-    cidrBlock: "10.2.0.0/16"
-    name: "test-crossplane"
+    cidrBlock: 10.2.0.0/16
+    name: test-crossplane

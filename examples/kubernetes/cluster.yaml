@@ -13,7 +13,8 @@ spec:
     clusterMaxPodNum: 32
     clusterMaxServiceNum: 32
     clusterInternet: true
-    clusterCidr: 10.31.0.0/16
+    clusterCidr: 172.18.0.0/16
+    clusterVersion: 1.22.5
     vpcIdSelector:
       matchLabels:
         provider: crossplane-provider-jet-tencentcloud
@@ -23,9 +24,6 @@ spec:
         instanceType: SA2.2XLARGE16
         systemDiskType: CLOUD_SSD
         systemDiskSize: 50
-        internetChargeType: TRAFFIC_POSTPAID_BY_HOUR
-        internetMaxBandwidthOut: 100
-        publicIpAssigned: true
         subnetIdSelector:
           matchLabels:
             provider: crossplane-provider-jet-tencentcloud
@@ -64,14 +62,11 @@ spec:
         provider: crossplane-provider-jet-tencentcloud
         app: test
     retryPolicy: INCREMENTAL_INTERVALS
-    enable_auto_scale: true
+    enableAutoScale: true
     autoScalingConfig:
       - instanceType: S1.SMALL1
         systemDiskType: CLOUD_PREMIUM
         systemDiskSize: 50
-        internetChargeType: TRAFFIC_POSTPAID_BY_HOUR
-        internetMaxBandwidthOut: 10
-        publicIpAssigned: true
         enhancedMonitorService: False
         enhancedSecurityService: False
         passwordSecretRef:
