@@ -4,17 +4,17 @@
 PROJECT_NAME := provider-jet-tencentcloud
 PROJECT_REPO := github.com/crossplane-contrib/$(PROJECT_NAME)
 
-export TERRAFORM_VERSION := 1.1.6
+export TERRAFORM_VERSION := 1.3.1
 export VERSION := 0.1.0
 export DOCKER_REGISTRY := harbor.internal.moqi.ai
 export BUILD_REGISTRY := harbor.internal.moqi.ai/mqdb
 export IMAGE_VERSION := v0.2
 
 export TERRAFORM_PROVIDER_SOURCE := tencentcloudstack/tencentcloud
-export TERRAFORM_PROVIDER_VERSION := 1.78.0
+export TERRAFORM_PROVIDER_VERSION := 1.78.2
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-tencentcloud
-export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX := https://github.com/tencentcloudstack/terraform-provider-tencentcloud/releases/download/v1.78.0
-export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-tencentcloud_v1.78.0
+export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX := https://github.com/tencentcloudstack/terraform-provider-tencentcloud/releases/download/v1.78.2
+export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-tencentcloud_v1.78.2
 
 PLATFORMS ?= linux_amd64 linux_arm64
 

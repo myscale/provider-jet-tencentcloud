@@ -1,0 +1,42 @@
+apiVersion: kubernetes.tencentcloud.jet.crossplane.io/v1alpha1
+kind: Cluster
+metadata:
+  name: test-cluster
+  labels:
+    provider: crossplane-provider-jet-tencentcloud
+    app: test
+spec:
+  forProvider:
+    clusterName: test-cluster
+    clusterDesc: test cluster describe
+    clusterMaxPodNum: 32
+    clusterMaxServiceNum: 32
+    clusterInternet: true
+    clusterCidr: 10.31.0.0/16
+    vpcIdSelector:
+      matchLabels:
+        provider: crossplane-provider-jet-tencentcloud
+        app: test
+    workerConfig:
+      - availabilityZone: ap-beijing-5
+        instanceType: SA2.2XLARGE16
+        systemDiskType: CLOUD_SSD
+        systemDiskSize: 50
+        internetChargeType: TRAFFIC_POSTPAID_BY_HOUR
+        internetMaxBandwidthOut: 100
+        publicIpAssigned: true
+        subnetIdSelector:
+          matchLabels:
+            provider: crossplane-provider-jet-tencentcloud
+            app: test
+        imgId: img-rkiynh11
+        dataDisk:
+          - diskType: CLOUD_PREMIUM
+            diskSize: 50
+        enhancedMonitorService: False
+        enhancedSecurityService: False
+        userData: dXNlcgo=
+
+
+
+
