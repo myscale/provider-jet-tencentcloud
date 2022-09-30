@@ -2,80 +2,85 @@
 apiVersion: kubernetes.tencentcloud.jet.crossplane.io/v1alpha1
 kind: Cluster
 metadata:
-  name: test-cluster
+  name: test-cluster-crossplane
   labels:
     provider: crossplane-provider-jet-tencentcloud
     app: test
 spec:
   forProvider:
-    clusterName: test-cluster
-    clusterDesc: test cluster describe
+    clusterName: crossplane-test-cluster
+    clusterDesc: test cluster description
     clusterMaxPodNum: 32
     clusterMaxServiceNum: 32
-    clusterInternet: true
-    clusterCidr: 172.18.0.0/16
+    clusterInternet: false
+    clusterCidr: 172.16.0.0/16
     clusterVersion: 1.22.5
     vpcIdSelector:
       matchLabels:
         provider: crossplane-provider-jet-tencentcloud
         app: test
-    workerConfig:
-      - availabilityZone: ap-beijing-5
-        instanceType: SA2.2XLARGE16
-        systemDiskType: CLOUD_SSD
-        systemDiskSize: 50
-        subnetIdSelector:
-          matchLabels:
-            provider: crossplane-provider-jet-tencentcloud
-            app: test
-        imgId: img-rkiynh11
-        dataDisk:
-          - diskType: CLOUD_PREMIUM
-            diskSize: 50
-        enhancedMonitorService: False
-        enhancedSecurityService: False
-        userData: dXNlcgo=
-        passwordSecretRef:
-          key: password
-          name: test-cluster
-          namespace: crossplane-system
----
-apiVersion: nodepool.tencentcloud.jet.crossplane.io/v1alpha1
-kind: NodePool
-metadata:
-  name: test-nodepool
-spec:
-  forProvider:
-    name: test-nodepool
-    clusterIdSelector:
-      matchLabels:
-        provider: crossplane-provider-jet-tencentcloud
-        app: test
-    maxSize: 6
-    minSize: 1
-    vpcIdSelector:
-      matchLabels:
-        provider: crossplane-provider-jet-tencentcloud
-        app: test
-    subnetIdSelector:
-      matchLabels:
-        provider: crossplane-provider-jet-tencentcloud
-        app: test
-    retryPolicy: INCREMENTAL_INTERVALS
-    enableAutoScale: true
-    autoScalingConfig:
-      - instanceType: S1.SMALL1
-        systemDiskType: CLOUD_PREMIUM
-        systemDiskSize: 50
-        enhancedMonitorService: False
-        enhancedSecurityService: False
-        passwordSecretRef:
-          key: password
-          name: test-cluster
-          namespace: crossplane-system
-        dataDisk:
-          - diskType: CLOUD_PREMIUM
-            diskSize: 50
+#    workerConfig:
+#      - availabilityZone: ap-beijing-5
+#        instanceType: SA2.2XLARGE16
+#        systemDiskType: CLOUD_SSD
+#        systemDiskSize: 50
+#        subnetIdSelector:
+#          matchLabels:
+#            provider: crossplane-provider-jet-tencentcloud
+#            app: test
+#        imgId: img-rkiynh11
+#        dataDisk:
+#          - diskType: CLOUD_PREMIUM
+#            diskSize: 50
+#        enhancedMonitorService: False
+#        enhancedSecurityService: False
+#        userData: dXNlcgo=
+#        passwordSecretRef:
+#          key: password
+#          name: test-cluster
+#          namespace: crossplane-system
+#---
+#apiVersion: nodepool.tencentcloud.jet.crossplane.io/v1alpha1
+#kind: NodePool
+#metadata:
+#  name: test-nodepool
+#spec:
+#  forProvider:
+#    name: test-nodepool-crossplane
+#    clusterIdSelector:
+#      matchLabels:
+#        provider: crossplane-provider-jet-tencentcloud
+#        app: test
+#    maxSize: 5
+#    minSize: 1
+#    vpcIdSelector:
+#      matchLabels:
+#        provider: crossplane-provider-jet-tencentcloud
+#        app: test
+#    subnetIdSelector:
+#      matchLabels:
+#        provider: crossplane-provider-jet-tencentcloud
+#        app: test
+#    retryPolicy: INCREMENTAL_INTERVALS
+#    enableAutoScale: true
+#    deleteKeepInstance: false
+#    autoScalingConfig:
+#      - instanceType: SA2.2XLARGE16
+#        systemDiskType: CLOUD_PREMIUM
+#        systemDiskSize: 50
+#        enhancedMonitorService: False
+#        enhancedSecurityService: False
+#        publicIpAssigned: false
+#        securityGroupIds:
+#          - sg-09c6ckwj
+#        passwordSecretRef:
+#          key: password
+#          name: test-cluster
+#          namespace: crossplane-system
+#        dataDisk:
+#          - diskType: CLOUD_PREMIUM
+#            diskSize: 50
+#            deleteWithInstance: true
 
 
 
