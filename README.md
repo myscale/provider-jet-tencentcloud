@@ -3,7 +3,7 @@
 `provider-jet-tencentcloud` is a [Crossplane](https://crossplane.io/) provider that
 is built using [Terrajet](https://github.com/crossplane/terrajet) code
 generation tools and exposes XRM-conformant managed resources for the
-TencentCloud API.
+TencentCloud API. View CRDs Doc at https://doc.crds.dev/github.com/myscale/provider-jet-tencentcloud
 
 ## Deploying
 Add a submodule to your project first:
