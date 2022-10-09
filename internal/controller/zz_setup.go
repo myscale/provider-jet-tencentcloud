@@ -25,6 +25,8 @@ import (
 	clusterkubernetes "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/kubernetes/cluster"
 	nodepool "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/nodepool/nodepool"
 	providerconfig "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/providerconfig"
+	role "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/role/role"
+	rolepolicyattachment "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/rolepolicyattachment/rolepolicyattachment"
 	subnet "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/subnet/subnet"
 	vpc "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/vpc/vpc"
 )
@@ -37,6 +39,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		clusterkubernetes.Setup,
 		nodepool.Setup,
 		providerconfig.Setup,
+		role.Setup,
+		rolepolicyattachment.Setup,
 		subnet.Setup,
 		vpc.Setup,
 	} {

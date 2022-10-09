@@ -19,6 +19,7 @@ package config
 import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
+	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/rolepolicyattachment"
 
 	tjconfig "github.com/crossplane/terrajet/pkg/config"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -26,6 +27,7 @@ import (
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/eks"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/kubernetes"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/nodepool"
+	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/role"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/subnet"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/vpc"
 )
@@ -45,6 +47,8 @@ var IncludedResources = []string{
 	"tencentcloud_eks_cluster$",
 	"tencentcloud_kubernetes_cluster$",
 	"tencentcloud_kubernetes_node_pool$",
+	"tencentcloud_cam_role$",
+	"tencentcloud_cam_role_policy_attachment$",
 }
 
 // skipList
@@ -72,6 +76,8 @@ func GetProvider() *tjconfig.Provider {
 		eks.Configure,
 		kubernetes.Configure,
 		nodepool.Configure,
+		role.Configure,
+		rolepolicyattachment.Configure,
 	} {
 		configure(pc)
 	}
