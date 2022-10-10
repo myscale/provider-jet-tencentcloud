@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: subnets.subnet.tencentcloud.jet.crossplane.io
+  name: grouprules.securitygrouprule.tencentcloud.jet.crossplane.io
 spec:
-  group: subnet.tencentcloud.jet.crossplane.io
+  group: securitygrouprule.tencentcloud.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
     - tencentcloudjet
-    kind: Subnet
-    listKind: SubnetList
-    plural: subnets
-    singular: subnet
+    kind: GroupRule
+    listKind: GroupRuleList
+    plural: grouprules
+    singular: grouprule
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Subnet is the Schema for the Subnets API
+        description: GroupRule is the Schema for the GroupRules API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SubnetSpec defines the desired state of Subnet
+            description: GroupRuleSpec defines the desired state of GroupRule
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,25 +63,61 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  availabilityZone:
-                    description: The availability zone within which the subnet should
-                      be created.
+                  addressTemplate:
+                    description: ID of the address template, and confilicts with `source_sgid`
+                      and `cidr_ip`.
+                    items:
+                      properties:
+                        groupId:
+                          description: Address template group ID, conflicts with `template_id`.
+                          type: string
+                        templateId:
+                          description: Address template ID, conflicts with `group_id`.
+                          type: string
+                      type: object
+                    type: array
+                  cidrIp:
+                    description: An IP address network or segment, and conflict with
+                      `source_sgid` and `address_template`.
                     type: string
-                  cidrBlock:
-                    description: A network address block of the subnet.
+                  description:
+                    description: Description of the security group rule.
                     type: string
-                  isMulticast:
-                    description: Indicates whether multicast is enabled. The default
-                      value is 'true'.
-                    type: boolean
-                  name:
-                    description: The name of subnet to be created.
+                  ipProtocol:
+                    description: 'Type of IP protocol. Valid values: `TCP`, `UDP`
+                      and `ICMP`. Default to all types protocol, and conflicts with
+                      `protocol_template`.'
                     type: string
-                  routeTableId:
-                    description: ID of a routing table to which the subnet should
-                      be associated.
+                  policy:
+                    description: 'Rule policy of security group. Valid values: `ACCEPT`
+                      and `DROP`.'
                     type: string
-                  routeTableIdRefs:
+                  policyIndex:
+                    description: The security group rule index number, the value of
+                      which dynamically changes as the security group rule changes.
+                    type: number
+                  portRange:
+                    description: Range of the port. The available value can be one,
+                      multiple or one segment. E.g. `80`, `80,90` and `80-90`. Default
+                      to all ports, and confilicts with `protocol_template`.
+                    type: string
+                  protocolTemplate:
+                    description: ID of the address template, and conflict with `ip_protocol`,
+                      `port_range`.
+                    items:
+                      properties:
+                        groupId:
+                          description: Address template group ID, conflicts with `template_id`.
+                          type: string
+                        templateId:
+                          description: Address template ID, conflicts with `group_id`.
+                          type: string
+                      type: object
+                    type: array
+                  securityGroupId:
+                    description: ID of the security group to be queried.
+                    type: string
+                  securityGroupIdRefs:
                     description: A Reference to a named object.
                     properties:
                       name:
@@ -90,7 +126,7 @@ spec:
                     required:
                     - name
                     type: object
-                  routeTableIdSelector:
+                  securityGroupIdSelector:
                     description: A Selector selects an object.
                     properties:
                       matchControllerRef:
@@ -104,41 +140,17 @@ spec:
                           is selected.
                         type: object
                     type: object
-                  tags:
-                    additionalProperties:
-                      type: string
-                    description: Tags of the subnet.
-                    type: object
-                  vpcId:
-                    description: ID of the VPC to be associated.
+                  sourceSgid:
+                    description: ID of the nested security group, and conflicts with
+                      `cidr_ip` and `address_template`.
                     type: string
-                  vpcIdRefs:
-                    description: A Reference to a named object.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                    required:
-                    - name
-                    type: object
-                  vpcIdSelector:
-                    description: A Selector selects an object.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                    type: object
+                  type:
+                    description: 'Type of the security group rule. Valid values: `ingress`
+                      and `egress`.'
+                    type: string
                 required:
-                - availabilityZone
-                - cidrBlock
-                - name
+                - policy
+                - type
                 type: object
               providerConfigRef:
                 default:
@@ -237,18 +249,12 @@ spec:
             - forProvider
             type: object
           status:
-            description: SubnetStatus defines the observed state of Subnet.
+            description: GroupRuleStatus defines the observed state of GroupRule.
             properties:
               atProvider:
                 properties:
-                  availableIpCount:
-                    type: number
-                  createTime:
-                    type: string
                   id:
                     type: string
-                  isDefault:
-                    type: boolean
                 type: object
               conditions:
                 description: Conditions of the resource.

@@ -27,6 +27,10 @@ import (
 	providerconfig "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/providerconfig"
 	role "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/role/role"
 	rolepolicyattachment "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/rolepolicyattachment/rolepolicyattachment"
+	table "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/routetable/table"
+	tableentry "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/routetableentry/tableentry"
+	group "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/securitygroup/group"
+	grouprule "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/securitygrouprule/grouprule"
 	subnet "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/subnet/subnet"
 	vpc "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/vpc/vpc"
 )
@@ -41,6 +45,10 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		providerconfig.Setup,
 		role.Setup,
 		rolepolicyattachment.Setup,
+		table.Setup,
+		tableentry.Setup,
+		group.Setup,
+		grouprule.Setup,
 		subnet.Setup,
 		vpc.Setup,
 	} {

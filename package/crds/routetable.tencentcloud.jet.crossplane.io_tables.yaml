@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: subnets.subnet.tencentcloud.jet.crossplane.io
+  name: tables.routetable.tencentcloud.jet.crossplane.io
 spec:
-  group: subnet.tencentcloud.jet.crossplane.io
+  group: routetable.tencentcloud.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
     - tencentcloudjet
-    kind: Subnet
-    listKind: SubnetList
-    plural: subnets
-    singular: subnet
+    kind: Table
+    listKind: TableList
+    plural: tables
+    singular: table
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Subnet is the Schema for the Subnets API
+        description: Table is the Schema for the Tables API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SubnetSpec defines the desired state of Subnet
+            description: TableSpec defines the desired state of Table
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,54 +63,16 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  availabilityZone:
-                    description: The availability zone within which the subnet should
-                      be created.
-                    type: string
-                  cidrBlock:
-                    description: A network address block of the subnet.
-                    type: string
-                  isMulticast:
-                    description: Indicates whether multicast is enabled. The default
-                      value is 'true'.
-                    type: boolean
                   name:
-                    description: The name of subnet to be created.
+                    description: The name of routing table.
                     type: string
-                  routeTableId:
-                    description: ID of a routing table to which the subnet should
-                      be associated.
-                    type: string
-                  routeTableIdRefs:
-                    description: A Reference to a named object.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                    required:
-                    - name
-                    type: object
-                  routeTableIdSelector:
-                    description: A Selector selects an object.
-                    properties:
-                      matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
-                        type: boolean
-                      matchLabels:
-                        additionalProperties:
-                          type: string
-                        description: MatchLabels ensures an object with matching labels
-                          is selected.
-                        type: object
-                    type: object
                   tags:
                     additionalProperties:
                       type: string
-                    description: Tags of the subnet.
+                    description: The tags of routing table.
                     type: object
                   vpcId:
-                    description: ID of the VPC to be associated.
+                    description: ID of VPC to which the route table should be associated.
                     type: string
                   vpcIdRefs:
                     description: A Reference to a named object.
@@ -136,8 +98,6 @@ spec:
                         type: object
                     type: object
                 required:
-                - availabilityZone
-                - cidrBlock
                 - name
                 type: object
               providerConfigRef:
@@ -237,18 +197,24 @@ spec:
             - forProvider
             type: object
           status:
-            description: SubnetStatus defines the observed state of Subnet.
+            description: TableStatus defines the observed state of Table.
             properties:
               atProvider:
                 properties:
-                  availableIpCount:
-                    type: number
                   createTime:
                     type: string
                   id:
                     type: string
                   isDefault:
                     type: boolean
+                  routeEntryIds:
+                    items:
+                      type: string
+                    type: array
+                  subnetIds:
+                    items:
+                      type: string
+                    type: array
                 type: object
               conditions:
                 description: Conditions of the resource.

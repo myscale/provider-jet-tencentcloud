@@ -33,13 +33,18 @@ func Configure(p *tjconfig.Provider) {
 			},
 			"subnet_ids": {
 				Type:              "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/subnet/v1alpha1.Subnet",
-				RefFieldName:      "SubnetIdRefs",
-				SelectorFieldName: "SubnetIdSelector",
+				RefFieldName:      "SubnetIdsRefs",
+				SelectorFieldName: "SubnetIdsSelector",
 			},
 			"cluster_id": {
 				Type:              "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/kubernetes/v1alpha1.Cluster",
 				RefFieldName:      "ClusterIdRefs",
 				SelectorFieldName: "ClusterIdSelector",
+			},
+			"auto_scaling_config.security_group_ids": {
+				Type:              "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/securitygroup/v1alpha1.SecurityGroup",
+				RefFieldName:      "SecurityGroupIdsRefs",
+				SelectorFieldName: "SecurityGroupIdsSelector",
 			},
 		}
 	})

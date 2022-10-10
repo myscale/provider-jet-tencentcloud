@@ -91,8 +91,17 @@ type AutoScalingConfigParameters struct {
 	PublicIPAssigned *bool `json:"publicIpAssigned,omitempty" tf:"public_ip_assigned,omitempty"`
 
 	// Security groups to which a CVM instance belongs.
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-jet-tencentcloud/apis/securitygroup/v1alpha1.SecurityGroup
+	// +crossplane:generate:reference:refFieldName=SecurityGroupIdsRefs
+	// +crossplane:generate:reference:selectorFieldName=SecurityGroupIdsSelector
 	// +kubebuilder:validation:Optional
 	SecurityGroupIds []*string `json:"securityGroupIds,omitempty" tf:"security_group_ids,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SecurityGroupIdsRefs []v1.Reference `json:"securityGroupIdsRefs,omitempty" tf:"-"`
+
+	// +kubebuilder:validation:Optional
+	SecurityGroupIdsSelector *v1.Selector `json:"securityGroupIdsSelector,omitempty" tf:"-"`
 
 	// Type of spot instance, only support `one-time` now. Note: it only works when instance_charge_type is set to `SPOTPAID`.
 	// +kubebuilder:validation:Optional
@@ -304,18 +313,18 @@ type NodePoolParameters struct {
 	// +kubebuilder:validation:Optional
 	ScalingMode *string `json:"scalingMode,omitempty" tf:"scaling_mode,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	SubnetIdRefs []v1.Reference `json:"subnetIdRefs,omitempty" tf:"-"`
-
-	// +kubebuilder:validation:Optional
-	SubnetIdSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
-
 	// ID list of subnet, and for VPC it is required.
 	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-jet-tencentcloud/apis/subnet/v1alpha1.Subnet
-	// +crossplane:generate:reference:refFieldName=SubnetIdRefs
-	// +crossplane:generate:reference:selectorFieldName=SubnetIdSelector
+	// +crossplane:generate:reference:refFieldName=SubnetIdsRefs
+	// +crossplane:generate:reference:selectorFieldName=SubnetIdsSelector
 	// +kubebuilder:validation:Optional
 	SubnetIds []*string `json:"subnetIds,omitempty" tf:"subnet_ids,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SubnetIdsRefs []v1.Reference `json:"subnetIdsRefs,omitempty" tf:"-"`
+
+	// +kubebuilder:validation:Optional
+	SubnetIdsSelector *v1.Selector `json:"subnetIdsSelector,omitempty" tf:"-"`
 
 	// Taints of kubernetes node pool created nodes.
 	// +kubebuilder:validation:Optional

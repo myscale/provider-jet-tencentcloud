@@ -19,6 +19,9 @@ spec:
       matchLabels:
         provider: crossplane-provider-jet-tencentcloud
         app: test
+  writeConnectionSecretToRef:
+    name: test01
+    namespace: crossplane-system
 #    workerConfig:
 #      - availabilityZone: ap-beijing-5
 #        instanceType: SA2.2XLARGE16
@@ -39,48 +42,48 @@ spec:
 #          key: password
 #          name: test-cluster
 #          namespace: crossplane-system
----
-apiVersion: nodepool.tencentcloud.jet.crossplane.io/v1alpha1
-kind: NodePool
-metadata:
-  name: test-nodepool
-spec:
-  forProvider:
-    name: test-nodepool-crossplane
-    clusterIdSelector:
-      matchLabels:
-        provider: crossplane-provider-jet-tencentcloud
-        app: test
-    maxSize: 5
-    minSize: 1
-    vpcIdSelector:
-      matchLabels:
-        provider: crossplane-provider-jet-tencentcloud
-        app: test
-    subnetIdSelector:
-      matchLabels:
-        provider: crossplane-provider-jet-tencentcloud
-        app: test
-    retryPolicy: INCREMENTAL_INTERVALS
-    enableAutoScale: true
-    deleteKeepInstance: false
-    autoScalingConfig:
-      - instanceType: SA2.2XLARGE16
-        systemDiskType: CLOUD_PREMIUM
-        systemDiskSize: 50
-        enhancedMonitorService: False
-        enhancedSecurityService: False
-        publicIpAssigned: false
-        securityGroupIds:
-          - sg-09c6ckwj
-        passwordSecretRef:
-          key: password
-          name: test-cluster
-          namespace: crossplane-system
-        dataDisk:
-          - diskType: CLOUD_PREMIUM
-            diskSize: 50
-            deleteWithInstance: true
+#---
+#apiVersion: nodepool.tencentcloud.jet.crossplane.io/v1alpha1
+#kind: NodePool
+#metadata:
+#  name: test-nodepool
+#spec:
+#  forProvider:
+#    name: test-nodepool-crossplane
+#    clusterIdSelector:
+#      matchLabels:
+#        provider: crossplane-provider-jet-tencentcloud
+#        app: test
+#    maxSize: 5
+#    minSize: 1
+#    vpcIdSelector:
+#      matchLabels:
+#        provider: crossplane-provider-jet-tencentcloud
+#        app: test
+#    subnetIdSelector:
+#      matchLabels:
+#        provider: crossplane-provider-jet-tencentcloud
+#        app: test
+#    retryPolicy: INCREMENTAL_INTERVALS
+#    enableAutoScale: true
+#    deleteKeepInstance: false
+#    autoScalingConfig:
+#      - instanceType: SA2.2XLARGE16
+#        systemDiskType: CLOUD_PREMIUM
+#        systemDiskSize: 50
+#        enhancedMonitorService: False
+#        enhancedSecurityService: False
+#        publicIpAssigned: false
+#        securityGroupIds:
+#          - sg-09c6ckwj
+#        passwordSecretRef:
+#          key: password
+#          name: test-cluster
+#          namespace: crossplane-system
+#        dataDisk:
+#          - diskType: CLOUD_PREMIUM
+#            diskSize: 50
+#            deleteWithInstance: true
 
 
 

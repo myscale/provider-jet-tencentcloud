@@ -27,6 +27,10 @@ import (
 	v1alpha1nodepool "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/nodepool/v1alpha1"
 	v1alpha1role "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/role/v1alpha1"
 	v1alpha1rolepolicyattachment "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/rolepolicyattachment/v1alpha1"
+	v1alpha1routetable "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/routetable/v1alpha1"
+	v1alpha1routetableentry "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/routetableentry/v1alpha1"
+	v1alpha1securitygroup "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/securitygroup/v1alpha1"
+	v1alpha1securitygrouprule "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/securitygrouprule/v1alpha1"
 	v1alpha1subnet "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/subnet/v1alpha1"
 	v1alpha1apis "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/v1alpha1"
 	v1alpha1vpc "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/vpc/v1alpha1"
@@ -40,6 +44,10 @@ func init() {
 		v1alpha1nodepool.SchemeBuilder.AddToScheme,
 		v1alpha1role.SchemeBuilder.AddToScheme,
 		v1alpha1rolepolicyattachment.SchemeBuilder.AddToScheme,
+		v1alpha1routetable.SchemeBuilder.AddToScheme,
+		v1alpha1routetableentry.SchemeBuilder.AddToScheme,
+		v1alpha1securitygroup.SchemeBuilder.AddToScheme,
+		v1alpha1securitygrouprule.SchemeBuilder.AddToScheme,
 		v1alpha1subnet.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1alpha1vpc.SchemeBuilder.AddToScheme,

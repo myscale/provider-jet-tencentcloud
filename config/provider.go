@@ -28,6 +28,10 @@ import (
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/kubernetes"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/nodepool"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/role"
+	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/routetable"
+	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/routetableentry"
+	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/securitygroup"
+	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/securitygrouprule"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/subnet"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/vpc"
 )
@@ -49,6 +53,10 @@ var IncludedResources = []string{
 	"tencentcloud_kubernetes_node_pool$",
 	"tencentcloud_cam_role$",
 	"tencentcloud_cam_role_policy_attachment$",
+	"tencentcloud_security_group$",
+	"tencentcloud_security_group_rule$",
+	"tencentcloud_route_table$",
+	"tencentcloud_route_table_entry$",
 }
 
 // skipList
@@ -78,6 +86,10 @@ func GetProvider() *tjconfig.Provider {
 		nodepool.Configure,
 		role.Configure,
 		rolepolicyattachment.Configure,
+		securitygroup.Configure,
+		securitygrouprule.Configure,
+		routetable.Configure,
+		routetableentry.Configure,
 	} {
 		configure(pc)
 	}

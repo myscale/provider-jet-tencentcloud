@@ -19,7 +19,8 @@ package v1alpha1
 
 import (
 	"context"
-	v1alpha1 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/vpc/v1alpha1"
+	v1alpha1 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/routetable/v1alpha1"
+	v1alpha11 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/vpc/v1alpha1"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -33,13 +34,29 @@ func (mg *Subnet) ResolveReferences(ctx context.Context, c client.Reader) error 
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.RouteTableID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.RouteTableIdRefs,
+		Selector:     mg.Spec.ForProvider.RouteTableIdSelector,
+		To: reference.To{
+			List:    &v1alpha1.RouteTableList{},
+			Managed: &v1alpha1.RouteTable{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.RouteTableID")
+	}
+	mg.Spec.ForProvider.RouteTableID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.RouteTableIdRefs = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.VPCID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.VpcIdRefs,
 		Selector:     mg.Spec.ForProvider.VpcIdSelector,
 		To: reference.To{
-			List:    &v1alpha1.VPCList{},
-			Managed: &v1alpha1.VPC{},
+			List:    &v1alpha11.VPCList{},
+			Managed: &v1alpha11.VPC{},
 		},
 	})
 	if err != nil {

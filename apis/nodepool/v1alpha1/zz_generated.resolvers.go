@@ -19,9 +19,10 @@ package v1alpha1
 
 import (
 	"context"
-	v1alpha1 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/kubernetes/v1alpha1"
-	v1alpha11 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/subnet/v1alpha1"
-	v1alpha12 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/vpc/v1alpha1"
+	v1alpha11 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/kubernetes/v1alpha1"
+	v1alpha1 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/securitygroup/v1alpha1"
+	v1alpha12 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/subnet/v1alpha1"
+	v1alpha13 "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/vpc/v1alpha1"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -35,14 +36,32 @@ func (mg *NodePool) ResolveReferences(ctx context.Context, c client.Reader) erro
 	var mrsp reference.MultiResolutionResponse
 	var err error
 
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.AutoScalingConfig); i3++ {
+		mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+			CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.AutoScalingConfig[i3].SecurityGroupIds),
+			Extract:       reference.ExternalName(),
+			References:    mg.Spec.ForProvider.AutoScalingConfig[i3].SecurityGroupIdsRefs,
+			Selector:      mg.Spec.ForProvider.AutoScalingConfig[i3].SecurityGroupIdsSelector,
+			To: reference.To{
+				List:    &v1alpha1.SecurityGroupList{},
+				Managed: &v1alpha1.SecurityGroup{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.AutoScalingConfig[i3].SecurityGroupIds")
+		}
+		mg.Spec.ForProvider.AutoScalingConfig[i3].SecurityGroupIds = reference.ToPtrValues(mrsp.ResolvedValues)
+		mg.Spec.ForProvider.AutoScalingConfig[i3].SecurityGroupIdsRefs = mrsp.ResolvedReferences
+
+	}
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ClusterID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.ClusterIdRefs,
 		Selector:     mg.Spec.ForProvider.ClusterIdSelector,
 		To: reference.To{
-			List:    &v1alpha1.ClusterList{},
-			Managed: &v1alpha1.Cluster{},
+			List:    &v1alpha11.ClusterList{},
+			Managed: &v1alpha11.Cluster{},
 		},
 	})
 	if err != nil {
@@ -54,18 +73,18 @@ func (mg *NodePool) ResolveReferences(ctx context.Context, c client.Reader) erro
 	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
 		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.SubnetIds),
 		Extract:       reference.ExternalName(),
-		References:    mg.Spec.ForProvider.SubnetIdRefs,
-		Selector:      mg.Spec.ForProvider.SubnetIdSelector,
+		References:    mg.Spec.ForProvider.SubnetIdsRefs,
+		Selector:      mg.Spec.ForProvider.SubnetIdsSelector,
 		To: reference.To{
-			List:    &v1alpha11.SubnetList{},
-			Managed: &v1alpha11.Subnet{},
+			List:    &v1alpha12.SubnetList{},
+			Managed: &v1alpha12.Subnet{},
 		},
 	})
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.SubnetIds")
 	}
 	mg.Spec.ForProvider.SubnetIds = reference.ToPtrValues(mrsp.ResolvedValues)
-	mg.Spec.ForProvider.SubnetIdRefs = mrsp.ResolvedReferences
+	mg.Spec.ForProvider.SubnetIdsRefs = mrsp.ResolvedReferences
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.VPCID),
@@ -73,8 +92,8 @@ func (mg *NodePool) ResolveReferences(ctx context.Context, c client.Reader) erro
 		Reference:    mg.Spec.ForProvider.VpcIdRefs,
 		Selector:     mg.Spec.ForProvider.VpcIdSelector,
 		To: reference.To{
-			List:    &v1alpha12.VPCList{},
-			Managed: &v1alpha12.VPC{},
+			List:    &v1alpha13.VPCList{},
+			Managed: &v1alpha13.VPC{},
 		},
 	})
 	if err != nil {
