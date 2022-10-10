@@ -54,7 +54,7 @@ type SubnetParameters struct {
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// ID of a routing table to which the subnet should be associated.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-jet-tencentcloud/apis/routetable/v1alpha1.RouteTable
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-jet-tencentcloud/apis/routetable/v1alpha1.Table
 	// +crossplane:generate:reference:refFieldName=RouteTableIdRefs
 	// +crossplane:generate:reference:selectorFieldName=RouteTableIdSelector
 	// +kubebuilder:validation:Optional

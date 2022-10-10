@@ -26,7 +26,7 @@ func Configure(p *tjconfig.Provider) {
 		r.ExternalName = tjconfig.IdentifierFromProvider
 		r.ShortGroup = "routetableentry"
 		r.References["route_table_id"] = tjconfig.Reference{
-			Type:              "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/routetable/v1alpha1.RouteTable",
+			Type:              "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/routetable/v1alpha1.Table",
 			RefFieldName:      "RouteTableIdRefs",
 			SelectorFieldName: "RouteTableIdSelector",
 		}

@@ -38,8 +38,8 @@ func (mg *TableEntry) ResolveReferences(ctx context.Context, c client.Reader) er
 		Reference:    mg.Spec.ForProvider.RouteTableIdRefs,
 		Selector:     mg.Spec.ForProvider.RouteTableIdSelector,
 		To: reference.To{
-			List:    &v1alpha1.RouteTableList{},
-			Managed: &v1alpha1.RouteTable{},
+			List:    &v1alpha1.TableList{},
+			Managed: &v1alpha1.Table{},
 		},
 	})
 	if err != nil {

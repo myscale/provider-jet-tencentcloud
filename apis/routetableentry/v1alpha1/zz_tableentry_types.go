@@ -52,7 +52,7 @@ type TableEntryParameters struct {
 	NextType *string `json:"nextType" tf:"next_type,omitempty"`
 
 	// ID of routing table to which this entry belongs.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-jet-tencentcloud/apis/routetable/v1alpha1.RouteTable
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-jet-tencentcloud/apis/routetable/v1alpha1.Table
 	// +crossplane:generate:reference:refFieldName=RouteTableIdRefs
 	// +crossplane:generate:reference:selectorFieldName=RouteTableIdSelector
 	// +kubebuilder:validation:Optional
