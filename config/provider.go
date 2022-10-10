@@ -19,7 +19,6 @@ package config
 import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
-	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/rolepolicyattachment"
 
 	tjconfig "github.com/crossplane/terrajet/pkg/config"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -28,6 +27,7 @@ import (
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/kubernetes"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/nodepool"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/role"
+	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/rolepolicyattachment"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/routetable"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/routetableentry"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/securitygroup"
