@@ -78,7 +78,7 @@ type GroupRuleParameters struct {
 	ProtocolTemplate []ProtocolTemplateParameters `json:"protocolTemplate,omitempty" tf:"protocol_template,omitempty"`
 
 	// ID of the security group to be queried.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-jet-tencentcloud/apis/securitygroup/v1alpha1.SecurityGroup
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-jet-tencentcloud/apis/securitygroup/v1alpha1.Group
 	// +crossplane:generate:reference:refFieldName=SecurityGroupIdRefs
 	// +crossplane:generate:reference:selectorFieldName=SecurityGroupIdSelector
 	// +kubebuilder:validation:Optional

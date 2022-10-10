@@ -91,7 +91,7 @@ type AutoScalingConfigParameters struct {
 	PublicIPAssigned *bool `json:"publicIpAssigned,omitempty" tf:"public_ip_assigned,omitempty"`
 
 	// Security groups to which a CVM instance belongs.
-	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-jet-tencentcloud/apis/securitygroup/v1alpha1.SecurityGroup
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-jet-tencentcloud/apis/securitygroup/v1alpha1.Group
 	// +crossplane:generate:reference:refFieldName=SecurityGroupIdsRefs
 	// +crossplane:generate:reference:selectorFieldName=SecurityGroupIdsSelector
 	// +kubebuilder:validation:Optional

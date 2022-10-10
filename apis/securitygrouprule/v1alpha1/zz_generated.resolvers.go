@@ -38,8 +38,8 @@ func (mg *GroupRule) ResolveReferences(ctx context.Context, c client.Reader) err
 		Reference:    mg.Spec.ForProvider.SecurityGroupIdRefs,
 		Selector:     mg.Spec.ForProvider.SecurityGroupIdSelector,
 		To: reference.To{
-			List:    &v1alpha1.SecurityGroupList{},
-			Managed: &v1alpha1.SecurityGroup{},
+			List:    &v1alpha1.GroupList{},
+			Managed: &v1alpha1.Group{},
 		},
 	})
 	if err != nil {

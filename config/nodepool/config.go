@@ -42,7 +42,7 @@ func Configure(p *tjconfig.Provider) {
 				SelectorFieldName: "ClusterIdSelector",
 			},
 			"auto_scaling_config.security_group_ids": {
-				Type:              "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/securitygroup/v1alpha1.SecurityGroup",
+				Type:              "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/securitygroup/v1alpha1.Group",
 				RefFieldName:      "SecurityGroupIdsRefs",
 				SelectorFieldName: "SecurityGroupIdsSelector",
 			},

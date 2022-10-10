@@ -26,7 +26,7 @@ func Configure(p *tjconfig.Provider) {
 		r.ExternalName = tjconfig.IdentifierFromProvider
 		r.ShortGroup = "securitygrouprule"
 		r.References["security_group_id"] = tjconfig.Reference{
-			Type:              "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/securitygroup/v1alpha1.SecurityGroup",
+			Type:              "github.com/crossplane-contrib/provider-jet-tencentcloud/apis/securitygroup/v1alpha1.Group",
 			RefFieldName:      "SecurityGroupIdRefs",
 			SelectorFieldName: "SecurityGroupIdSelector",
 		}

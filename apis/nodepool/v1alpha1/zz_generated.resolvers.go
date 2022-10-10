@@ -43,8 +43,8 @@ func (mg *NodePool) ResolveReferences(ctx context.Context, c client.Reader) erro
 			References:    mg.Spec.ForProvider.AutoScalingConfig[i3].SecurityGroupIdsRefs,
 			Selector:      mg.Spec.ForProvider.AutoScalingConfig[i3].SecurityGroupIdsSelector,
 			To: reference.To{
-				List:    &v1alpha1.SecurityGroupList{},
-				Managed: &v1alpha1.SecurityGroup{},
+				List:    &v1alpha1.GroupList{},
+				Managed: &v1alpha1.Group{},
 			},
 		})
 		if err != nil {
