@@ -7,7 +7,7 @@ metadata:
   labels:
     app: crossplane-provider-tencentcloud
 spec:
-  image: harbor.internal.moqi.ai/mqdb/provider-tencentcloud-controller:v0.3.0
+  image: harbor.internal.moqi.ai/mqdb/provider-tencentcloud-controller:v0.3.1
   args: ["-d"]
 ---
 apiVersion: pkg.crossplane.io/v1
@@ -16,6 +16,6 @@ metadata:
   name: crossplane-provider-tencentcloud
   namespace: crossplane-system
 spec:
-  package: harbor.internal.moqi.ai/mqdb/provider-tencentcloud:v0.3.0
+  package: harbor.internal.moqi.ai/mqdb/provider-tencentcloud:v0.3.1
   controllerConfigRef:
     name: tencentcloud-config

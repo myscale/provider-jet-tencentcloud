@@ -6,7 +6,7 @@ PROJECT_REPO := github.com/crossplane-contrib/$(PROJECT_NAME)
 
 export TERRAFORM_VERSION := 1.1.9
 export BUILD_REGISTRY := harbor.internal.moqi.ai/mqdb
-export IMAGE_VERSION := v0.3.0
+export IMAGE_VERSION := v0.3.1
 
 export TERRAFORM_PROVIDER_SOURCE := tencentcloudstack/tencentcloud
 export TERRAFORM_PROVIDER_VERSION := 1.78.2
