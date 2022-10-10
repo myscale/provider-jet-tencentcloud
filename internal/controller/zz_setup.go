@@ -21,6 +21,7 @@ import (
 
 	"github.com/crossplane/terrajet/pkg/controller"
 
+	clusterendpoint "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/clusterendpoint/clusterendpoint"
 	cluster "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/eks/cluster"
 	clusterkubernetes "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/kubernetes/cluster"
 	nodepool "github.com/crossplane-contrib/provider-jet-tencentcloud/internal/controller/nodepool/nodepool"
@@ -39,6 +40,7 @@ import (
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
+		clusterendpoint.Setup,
 		cluster.Setup,
 		clusterkubernetes.Setup,
 		nodepool.Setup,

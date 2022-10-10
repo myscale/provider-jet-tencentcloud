@@ -23,6 +23,7 @@ import (
 	tjconfig "github.com/crossplane/terrajet/pkg/config"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
+	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/clusterendpoint"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/eks"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/kubernetes"
 	"github.com/crossplane-contrib/provider-jet-tencentcloud/config/nodepool"
@@ -57,6 +58,7 @@ var IncludedResources = []string{
 	"tencentcloud_security_group_rule$",
 	"tencentcloud_route_table$",
 	"tencentcloud_route_table_entry$",
+	"tencentcloud_kubernetes_cluster_endpoint",
 }
 
 // skipList
@@ -90,6 +92,7 @@ func GetProvider() *tjconfig.Provider {
 		securitygrouprule.Configure,
 		routetable.Configure,
 		routetableentry.Configure,
+		clusterendpoint.Configure,
 	} {
 		configure(pc)
 	}

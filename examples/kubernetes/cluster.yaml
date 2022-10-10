@@ -3,10 +3,15 @@ apiVersion: kubernetes.tencentcloud.jet.crossplane.io/v1alpha1
 kind: Cluster
 metadata:
   name: test-cluster-crossplane
+  annotations:
+    provider: crossplane
   labels:
     provider: crossplane-provider-jet-tencentcloud
     app: test
 spec:
+  writeConnectionSecretToRef:
+    name: test01
+    namespace: crossplane-system
   forProvider:
     clusterName: crossplane-test-cluster
     clusterDesc: test cluster description
@@ -19,29 +24,33 @@ spec:
       matchLabels:
         provider: crossplane-provider-jet-tencentcloud
         app: test
-  writeConnectionSecretToRef:
-    name: test01
-    namespace: crossplane-system
+#    clusterIntranet: true
+#    clusterIntranetSubnetId: subnet-o7750sfv
+    #status:
+#  connectionDetails: kubeconfig
 #    workerConfig:
-#      - availabilityZone: ap-beijing-5
-#        instanceType: SA2.2XLARGE16
-#        systemDiskType: CLOUD_SSD
-#        systemDiskSize: 50
-#        subnetIdSelector:
-#          matchLabels:
-#            provider: crossplane-provider-jet-tencentcloud
-#            app: test
-#        imgId: img-rkiynh11
-#        dataDisk:
-#          - diskType: CLOUD_PREMIUM
-#            diskSize: 50
-#        enhancedMonitorService: False
-#        enhancedSecurityService: False
-#        userData: dXNlcgo=
-#        passwordSecretRef:
-#          key: password
-#          name: test-cluster
-#          namespace: crossplane-system
+#    - availabilityZone: ap-beijing-5
+#      count: 1
+#      instanceName: cluster-instance01
+#      instanceType: SA2.2XLARGE16
+#      systemDiskType: CLOUD_SSD
+#      systemDiskSize: 50
+#      subnetIdSelector:
+#        matchLabels:
+#          provider: crossplane-provider-jet-tencentcloud
+#          app: test
+#      imgId: img-rkiynh11
+#      enhancedMonitorService: False
+#      enhancedSecurityService: False
+#      userData: dXNlcgo=
+#      passwordSecretRef:
+#        key: password
+#        name: test-cluster
+#        namespace: crossplane-system
+#      dataDisk:
+#      - diskType: CLOUD_PREMIUM
+#        diskSize: 50
+
 #---
 #apiVersion: nodepool.tencentcloud.jet.crossplane.io/v1alpha1
 #kind: NodePool
