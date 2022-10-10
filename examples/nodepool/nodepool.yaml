@@ -15,7 +15,7 @@ spec:
       matchLabels:
         provider: crossplane-provider-jet-tencentcloud
         app: test
-    subnetIdSelector:
+    subnetIdsSelector:
       matchLabels:
         provider: crossplane-provider-jet-tencentcloud
         app: test
