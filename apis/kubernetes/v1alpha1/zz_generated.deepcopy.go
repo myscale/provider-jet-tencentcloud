@@ -405,6 +405,16 @@ func (in *ClusterParameters) DeepCopyInto(out *ClusterParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ClusterIntranetSubnetIdRefs != nil {
+		in, out := &in.ClusterIntranetSubnetIdRefs, &out.ClusterIntranetSubnetIdRefs
+		*out = new(v1.Reference)
+		**out = **in
+	}
+	if in.ClusterIntranetSubnetIdSelector != nil {
+		in, out := &in.ClusterIntranetSubnetIdSelector, &out.ClusterIntranetSubnetIdSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.ClusterIpvs != nil {
 		in, out := &in.ClusterIpvs, &out.ClusterIpvs
 		*out = new(bool)

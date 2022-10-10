@@ -164,8 +164,17 @@ type ClusterParameters struct {
 	ClusterIntranet *bool `json:"clusterIntranet,omitempty" tf:"cluster_intranet,omitempty"`
 
 	// Subnet id who can access this independent cluster, this field must and can only set  when `cluster_intranet` is true. `cluster_intranet_subnet_id` can not modify once be set.
+	// +crossplane:generate:reference:type=github.com/crossplane-contrib/provider-jet-tencentcloud/apis/subnet/v1alpha1.Subnet
+	// +crossplane:generate:reference:refFieldName=ClusterIntranetSubnetIdRefs
+	// +crossplane:generate:reference:selectorFieldName=ClusterIntranetSubnetIdSelector
 	// +kubebuilder:validation:Optional
 	ClusterIntranetSubnetID *string `json:"clusterIntranetSubnetId,omitempty" tf:"cluster_intranet_subnet_id,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	ClusterIntranetSubnetIdRefs *v1.Reference `json:"clusterIntranetSubnetIdRefs,omitempty" tf:"-"`
+
+	// +kubebuilder:validation:Optional
+	ClusterIntranetSubnetIdSelector *v1.Selector `json:"clusterIntranetSubnetIdSelector,omitempty" tf:"-"`
 
 	// Indicates whether `ipvs` is enabled. Default is true. False means `iptables` is enabled.
 	// +kubebuilder:validation:Optional
