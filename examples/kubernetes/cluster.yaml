@@ -6,9 +6,6 @@ metadata:
     provider: crossplane-provider-jet-tencentcloud
     app: test
 spec:
-  writeConnectionSecretToRef:
-    name: test01
-    namespace: crossplane-system
   forProvider:
     clusterName: crossplane-test-cluster
     clusterDesc: test cluster description
